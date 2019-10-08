@@ -1,0 +1,37 @@
+﻿@using WebsiteScraper.Models
+@model PrimarySearchResult
+
+    <div class="primary-result">
+        <div class="primary-result-rank">
+            Google Rank:
+            <span class="primary-result-source" data-bind="text: SequenceNumber">
+                @Model.SequenceNumber
+            </span>
+        </div>
+        <div class="primary-result-title">
+            @Model.Title
+            <div class="primary-result-source" data-bind="text: Source">
+                @Html.Raw(Model.Source)
+            </div>
+        </div>
+        <hr />
+        @if (Model.PostDate != null)
+        {
+            <div class="primary-result-post-date" data-bind="text: PostDate">
+                @(Model.PostDate?.ToString("MMMM dd, yyyy"))
+            </div>
+        }
+        <div class="primary-result-description" data-bind="text: Description">
+            @Html.Raw(Model.Description)
+        </div>
+
+        @if (Model.SubResults.Count > 0)
+        {
+            foreach (var subResult in Model.SubResults)
+            {
+            <div data-bind="foreach: SubSearchResults()">
+                @Html.Partial("_SubSearchResult", subResult)
+            </div>
+            }
+        }
+    </div>

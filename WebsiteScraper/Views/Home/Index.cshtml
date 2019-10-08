@@ -1,0 +1,63 @@
+﻿@using WebsiteScraper.ViewModels
+@using Newtonsoft.Json;
+@model ScraperResultViewModel
+
+<div class="row">
+
+    <div class="col-md-4">
+        <span class="search-result-heading">Search Keywords: </span><br />
+        <div class="search-result-content">@Html.TextBoxFor(model => model.SearchKeywords, new { data_bind = "value: SearchKeywords" })</div>
+    </div>
+
+    <div class="col-md-4">
+        <span class="search-result-heading">Url to Find: </span><br />
+        <div class="search-result-content">@Html.TextBoxFor(model => model.TextToFind, new { data_bind = "value: TextToFind" })</div>
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-4">
+        <p>
+            <span class="search-result-heading">Search Rankings: </span>
+            <span class="search-result-content" data-bind="text: SearchResultRankings"></span>
+        </p>
+    </div>
+
+</div>
+
+<button type="button" class="btn btn-primary" data-bind="click: $root.Search">Search</button>
+
+<div class="row">
+    <div class="col-md-12" data-bind="foreach: MatchingResults()">
+        <div class="primary-result">
+            <div class="primary-result-rank">
+                Google Rank:
+                <span class="primary-result-source" data-bind="text: SequenceNumber"></span>
+            </div>
+            <div class="primary-result-title">
+                <span data-bind="text: Title"></span>
+                <div class="primary-result-source" data-bind="html: Source"></div>
+            </div>
+            <hr />
+            <div class="primary-result-post-date" data-bind="text: PostDate"></div>
+            <div class="primary-result-description" data-bind="html: Description"></div>
+
+            <div data-bind="foreach: SubResults()">
+                <div class="sub-result">
+                    <div class="sub-result-title" data-bind="text: Title"></div>
+                    <div class="sub-result-source" data-bind="html: Source"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var jsonScraperResultViewModel = '@Html.Raw(JsonConvert.SerializeObject(this.Model))';
+</script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/knockout-3.5.0.js"></script>
+<script src="~/Scripts/knockout.mapping-latest.js"></script>
+<script src="~/Scripts/KOScraper.js"></script>
