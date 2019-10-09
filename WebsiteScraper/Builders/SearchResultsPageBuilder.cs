@@ -8,16 +8,24 @@ using WebsiteScraper.Models;
 
 namespace WebsiteScraper.Builders
 {
-    public class SearchResultsPageBuilder
+    public class SearchResultsPageBuilder : ISearchResultsPageBuilder
     {
 
-        public SearchResultsPage Page = new SearchResultsPage();
+        public SearchResultsPage Page { get; set; }
 
-        private string SearchResultsSearchUrl = "";
+        private string SearchResultsSearchUrl { get; set; }
 
-        private string SearchResultsRawHtml = "";
+        private string SearchResultsRawHtml { get; set; }
 
-        private Dictionary<int, string> SearchResultHtmlBlocks = new Dictionary<int, string>();
+        private Dictionary<int, string> SearchResultHtmlBlocks { get; set; }
+
+        public SearchResultsPageBuilder()
+        {
+            Page = new SearchResultsPage();
+            SearchResultsSearchUrl = "";
+            SearchResultsRawHtml = "";
+            SearchResultHtmlBlocks = new Dictionary<int, string>();
+        }
 
         public void BuildSearchResultsPage(string searchTerms, int pageSize = 100)
         {
