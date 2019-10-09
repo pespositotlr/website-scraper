@@ -5,7 +5,7 @@ using System.Web;
 
 namespace WebsiteScraper.Models
 {
-    public class SearchResultsPage
+    public class SearchResultsPage : ISearchResultsPage
     {
         public List<PrimarySearchResult> SearchResults { get; set; }
         

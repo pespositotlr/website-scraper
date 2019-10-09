@@ -10,8 +10,7 @@ namespace WebsiteScraper.Builders
 {
     public interface ISearchResultsPageBuilder
     {
-
-        SearchResultsPage Page { get; set; }
+        ISearchResultsPage Page { get; set; }
         
         void BuildSearchResultsPage(string searchTerms, int pageSize = 100);
 

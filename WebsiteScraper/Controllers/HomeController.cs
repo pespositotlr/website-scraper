@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebsiteScraper.Builders;
 using WebsiteScraper.Helpers;
+using WebsiteScraper.Models;
 using WebsiteScraper.ViewModels;
 
 namespace WebsiteScraper.Controllers
@@ -41,11 +42,11 @@ namespace WebsiteScraper.Controllers
             resultViewModel.TextToFind = textToFind;
             resultViewModel.ResultsToCheck = resultsToCheck;
 
-            var searchResultsPageBuiler = new SearchResultsPageBuilder();
+            var searchResultsPageBuiler = new SearchResultsPageBuilder(new SearchResultsPage());
 
             searchResultsPageBuiler.BuildSearchResultsPage(searchKeywords, resultsToCheck);
 
-            resultViewModel.MatchingResults = SearchResultsPageHelper.GetSearchResultsContainingString(searchResultsPageBuiler.Page, textToFind);
+            resultViewModel.MatchingResults = SearchResultsPageHelper.GetSearchResultsContainingString((SearchResultsPage)searchResultsPageBuiler.Page, textToFind);
 
             return resultViewModel;
         }

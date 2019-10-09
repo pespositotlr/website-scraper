@@ -11,7 +11,7 @@ namespace WebsiteScraper.Builders
     public class SearchResultsPageBuilder : ISearchResultsPageBuilder
     {
 
-        public SearchResultsPage Page { get; set; }
+        public ISearchResultsPage Page { get; set; }
 
         private string SearchResultsSearchUrl { get; set; }
 
@@ -19,9 +19,9 @@ namespace WebsiteScraper.Builders
 
         private Dictionary<int, string> SearchResultHtmlBlocks { get; set; }
 
-        public SearchResultsPageBuilder()
+        public SearchResultsPageBuilder(ISearchResultsPage page)
         {
-            Page = new SearchResultsPage();
+            Page = page;
             SearchResultsSearchUrl = "";
             SearchResultsRawHtml = "";
             SearchResultHtmlBlocks = new Dictionary<int, string>();

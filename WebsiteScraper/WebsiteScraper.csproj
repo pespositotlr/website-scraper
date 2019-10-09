@@ -131,7 +131,9 @@
     <Compile Include="Helpers\GoogleSearchResultsHelper.cs" />
     <Compile Include="Helpers\HtmlScraperHelper.cs" />
     <Compile Include="Helpers\SearchResultsPageHelper.cs" />
+    <Compile Include="Models\ISearchResult.cs" />
     <Compile Include="Models\SearchResult.cs" />
+    <Compile Include="Models\ISearchResultsPage.cs" />
     <Compile Include="Models\SubSearchResult.cs" />
     <Compile Include="Models\PrimarySearchResult.cs" />
     <Compile Include="Models\SearchResultsPage.cs" />

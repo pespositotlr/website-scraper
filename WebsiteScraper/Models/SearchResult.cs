@@ -5,7 +5,7 @@ using System.Web;
 
 namespace WebsiteScraper.Models
 {
-    public abstract class SearchResult
+    public abstract class SearchResult : ISearchResult
     {
         public string Title { get; set; }
         public string Source { get; set; }
