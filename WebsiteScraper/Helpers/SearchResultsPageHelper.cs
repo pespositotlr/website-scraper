@@ -16,24 +16,25 @@ namespace WebsiteScraper.Helpers
             foreach (PrimarySearchResult result in page.SearchResults)
             {
 
-                if (result.Title.ToLower().Contains(stringToFindLowercase) ||
+                if ((result.Title.ToLower().Contains(stringToFindLowercase) ||
                     result.Source.ToLower().Contains(stringToFindLowercase))
+                    && !foundSearchResults.Any(x => x.SequenceNumber == result.SequenceNumber))
                 {
                     foundSearchResults.Add(result);
                 }
 
                 foreach(SubSearchResult subResult in result.SubResults)
                 {
-                    if (subResult.Title.ToLower().Contains(stringToFindLowercase) ||
+                    if ((subResult.Title.ToLower().Contains(stringToFindLowercase) ||
                         subResult.Source.ToLower().Contains(stringToFindLowercase))
+                        && !foundSearchResults.Any(x => x.SequenceNumber == result.SequenceNumber))
                     {
                         foundSearchResults.Add(result);
                     }
                 }
 
             }
-
-
+            
             return foundSearchResults;
 
         }
